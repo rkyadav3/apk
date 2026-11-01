@@ -12,8 +12,9 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: 8.7
-      - run: gradle assembleRelease
+      - run: gradle assembleRelease --stacktrace
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: app-release
-          path: "**/app-release.apk"
+          name: apk
+          path: "**/*.apk"
